@@ -21,24 +21,37 @@ ssh root@kvm8.deyu.wang
 hostnamectl hostname kvm8.deyu.wang
 
 echo 'enp1s0' > /root/netif
+
 echo 'enp1s0' > /root/netcon
 
 # [YUM 套件管理]
 vim /etc/yum.repos.d/redhat.repo
+
 [AppStream]
+
 name=App Stream
+
 baseurl=http://dywang.csie.cyut.edu.tw/alma9/AppStream
+
 gpgcheck=0
 
 [BaseOS]
+
 name=Base OS
+
 baseurl=http://dywang.csie.cyut.edu.tw/alma9/BaseOS
+
 gpgcheck=0
 
 # [systemctl 系統服務控制 ]
 systemctl is-active chronyd.service > /root/systemd-active
+
 systemctl is-enabled chronyd.service > /root/systemd-enable
+
 echo 'systemctl stop chronyd.service' > /root/systemd-stop
+
 echo 'systemctl start chronyd.service' > /root/systemd-start
+
 echo 'systemctl restart chronyd.service' > /root/systemd-restart
+
 echo 'systemctl status chronyd.service' > /root/systemd-status
