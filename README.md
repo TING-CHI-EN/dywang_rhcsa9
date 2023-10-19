@@ -93,9 +93,9 @@ echo 'systemctl status chronyd.service' > /root/systemd-status
 
 #### 查詢 http_port_t，82 port 不是 httpd 程序允許訪問的 port。 
 ```
-semange port --list | grep http
+semanage port --list | grep http
 ```
 #### 新增 82 為 httpd 服務允許訪問的埠號
 ```
-semange port -a -t http_port_t -p tcp 82
+semanage port -a -t http_port_t -p tcp 82
 ```
