@@ -5,9 +5,12 @@ nmcli connection modify enp1s0 ipv4.addresses 192.168.122.8/24 ipv4.gateway 192.
 nmcli connection up enp1s0
 
 vim /etc/ssh/sshd_config
+
 #PermitRootLogin prohibit-password
+
 PermitRootLogin yes
-# the setting of "PermitRootLogin without-password".
+
+#the setting of "PermitRootLogin without-password".
 
 systemctl restart sshd.service
 
