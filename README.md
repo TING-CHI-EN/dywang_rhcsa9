@@ -21,3 +21,14 @@ hostnamectl hostname kvm8.deyu.wang
 
 echo 'enp1s0' > /root/netif
 echo 'enp1s0' > /root/netcon
+
+vim /etc/yum.repos.d/redhat.repo
+[AppStream]
+name=App Stream
+baseurl=http://dywang.csie.cyut.edu.tw/alma9/AppStream
+gpgcheck=0
+
+[BaseOS]
+name=Base OS
+baseurl=http://dywang.csie.cyut.edu.tw/alma9/BaseOS
+gpgcheck=0
