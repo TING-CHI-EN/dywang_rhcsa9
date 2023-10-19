@@ -47,14 +47,7 @@ echo 'enp1s0' > /root/netcon
 ```
 vim /etc/yum.repos.d/redhat.repo
 ```
-[AppStream]
-
-name=App Stream
-
-baseurl=http://dywang.csie.cyut.edu.tw/alma9/AppStream
-
-gpgcheck=0
-
+```
 [BaseOS]
 
 name=Base OS
@@ -63,6 +56,14 @@ baseurl=http://dywang.csie.cyut.edu.tw/alma9/BaseOS
 
 gpgcheck=0
 
+[AppStream]
+
+name=App Stream
+
+baseurl=http://dywang.csie.cyut.edu.tw/alma9/AppStream
+
+gpgcheck=0
+```
 # [systemctl 系統服務控制 ]
 
 #### 查看 chronyd 服務是否啟動 (active)？結果導向到 /root/systemd-active。
