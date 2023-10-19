@@ -99,3 +99,7 @@ semanage port --list | grep http
 ```
 semanage port -a -t http_port_t -p tcp 82
 ```
+#### 再重新啟動 httpd 服務，成功啟動服務。
+```
+systemctl restart httpd.service
+```
