@@ -107,3 +107,35 @@ semanage port -a -t http_port_t -p tcp 82
 ```
 systemctl restart httpd.service
 ```
+#### 查看網頁伺服器根目錄下有 file1, file2 兩個檔案，權限是任何人都可讀取
+```
+ll /var/www/html/
+```
+#### 使用 curl 訪問網頁 file1，回應沒有權限存取
+```
+curl http://127.0.0.1:82/file1
+```
+#### 將 /var/www/html 目錄下所有檔案，恢復預設的 selinux contexts
+```
+restorecon -rv /var/www/html/
+```
+#### semanage -d 刪除 /var/www/html/file1 自訂的 admin_home_t
+```
+semanage fcontext -d -t admin_home_t /var/www/html/file1
+```
+#### 將 /var/www/html 目錄下所有檔案，恢復預設的 selinux contexts
+```
+restorecon -rv /var/www/html/
+```
+#### 查看 SELinux Contexts，file1 及 file2 都是 httpd_sys_contect
+```
+ls -Z /var/www/html/
+```
+#### 使用 curl 訪問網頁 file1 及 file2，都成功回應檔案內容
+[root@kvm8 ~]# curl http://127.0.0.1:82/file1
+
+web test1
+
+[root@kvm8 ~]# curl http://127.0.0.1:82/file2
+
+web test2
