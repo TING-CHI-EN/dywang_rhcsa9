@@ -187,4 +187,4 @@ cat re1.txt | grep '[0-9]\\{2,\\}' > result5.txt
 
 cat re1.txt | grep '^[A-Z]' > result6.txt
 
-cat re1.txt | grep '[^\\.]$' > result7.txt
+cat re1.txt | grep '[^\.]$' > result7.txt
