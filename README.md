@@ -1,4 +1,7 @@
 # dywang_rhcsa9
+```
+echo '4-2 159 11227608 丁啟恩' > sid
+```
 # IPv4 網路設定 
 [kvm8 console]
 
