@@ -94,7 +94,7 @@ echo 'systemctl restart chronyd.service' > /root/systemd-restart
 echo 'systemctl status chronyd.service' > /root/systemd-status
 ```
 # [SELinux]
-
+## [實機練習]
 #### 查詢 http_port_t，82 port 不是 httpd 程序允許訪問的 port。 
 ```
 semanage port --list | grep http
@@ -139,3 +139,40 @@ web test1
 [root@kvm8 ~]# curl http://127.0.0.1:82/file2
 
 web test2
+
+## [實機練習]
+#### ls /etc/audit 導向到 /root/redirect1
+```
+ls /etc/audit/ > /root/redirect1
+```
+#### ls /etcdy 錯誤導向到 /root/redirect2
+```
+ls /etcdy 2> /root/redirect2
+```
+#### ls /usr/local 導向到 /root/redirect3
+```
+ls /usr/local/ > /root/redirect3
+```
+#### ls /usr/etcdy 錯誤累加導向到 /root/redirect3
+```
+ls /usr/etcdy 2>> /root/redirect3
+```
+#### ls /bin/a* /lib64/autofs1 的 stdout 及 stderr 同時導向到 /root/redirect4
+```
+ls /bin/a* /lib64/autofs1 > /root/redirect4 2>&1
+```
+
+從檔案 /usr/share/doc/xz/README 中找出所有包含字串 info 的行列，導向到檔案 /root/info。
+```
+cat /usr/share/doc/xz/README | grep info > /root/info
+```
+從檔案 txtfile (例如 /usr/share/doc/systemd/LICENSES/OFL-1.1.txt) 中找出所有包含字串 str 的行列，導向到檔案 wlist。
+```
+cat /usr/share/doc/systemd/LICENSES/OFL-1.1.txt | grep and > /root/11227608list
+```
+使用 nmcli 命令 show 目前的網路連線設定，經由管線命令找出包含 ipv4 IPV4 ip4 IP4 等字串的行，導向到檔案 myipv4。
+```
+nmcli connection show enp1s0 | grep -iE ipv?4 > /root/11227608ip
+```
+
+
