@@ -181,10 +181,10 @@ cat re1.txt | grep 't[ae]st' > result2.txt
 
 cat re1.txt | egrep '[^g|^t]oo' > result3.txt
 
-cat re1.txt | grep '[^0-9][0-9]\{4,4\}[^0-9]' > result4.txt
+cat re1.txt | grep '[^0-9][0-9]\\{4\\}[^0-9]' > result4.txt
 
-cat re1.txt | grep '[0-9]\{2,\}' > result5.txt
+cat re1.txt | grep '[0-9]\\{2,\\}' > result5.txt
 
 cat re1.txt | grep '^[A-Z]' > result6.txt
 
-cat re1.txt | grep '\.$' > result7.txt
+cat re1.txt | grep '\\.$' > result7.txt
