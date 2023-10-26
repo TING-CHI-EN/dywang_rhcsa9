@@ -175,4 +175,16 @@ cat /usr/share/doc/systemd/LICENSES/OFL-1.1.txt | grep and > /root/11227608list
 nmcli connection show enp1s0 | grep -iE ipv?4 > /root/11227608ip
 ```
 
+cat re1.txt | grep -i 'you' > result1.txt
 
+cat re1.txt | grep 't[ae]st' > result2.txt
+
+cat re1.txt | egrep '[^g|^t]oo' > result3.txt
+
+cat re1.txt | grep '[^0-9][0-9]\{4,4\}[^0-9]' > result4.txt
+
+cat re1.txt | grep '[0-9]\{2,\}' > result5.txt
+
+cat re1.txt | grep '^[A-Z]' > result6.txt
+
+cat re1.txt | grep '\.$' > result7.txt
