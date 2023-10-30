@@ -175,16 +175,25 @@ cat /usr/share/doc/systemd/LICENSES/OFL-1.1.txt | grep and > /root/11227608list
 nmcli connection show enp1s0 | grep -iE ipv?4 > /root/11227608ip
 ```
 
+## [正規表達式]
+在自己的家目錄建立一個新的目錄 zzz。
+進入目錄 zzz。
+下載檔案 re1.txt
+使用 grep 對 re1.txt 執行以下搜尋動作，不需要列印行號，結果分別導向到檔案 result1.txt 至 result7.txt，不要做任何的更動。
+1. you 大小寫不分。
+2. tast 或 test。
+3. oo 前面不是 g，也不是 t。
+4. 剛好四個阿拉伯數字。
+5. 兩個以上阿拉伯數字。
+6. 行首是大寫英文字母。
+7. 行尾不是 '.' 句點。
+
+```
 cat re1.txt | grep -i 'you' > result1.txt
-
 cat re1.txt | grep 't[ae]st' > result2.txt
-
 cat re1.txt | egrep '[^g|^t]oo' > result3.txt
-
 cat re1.txt | grep '[^0-9][0-9]\\{4\\}[^0-9]' > result4.txt
-
 cat re1.txt | grep '[0-9]\\{2,\\}' > result5.txt
-
 cat re1.txt | grep '^[A-Z]' > result6.txt
-
 cat re1.txt | grep '[^\.]$' > result7.txt
+```
