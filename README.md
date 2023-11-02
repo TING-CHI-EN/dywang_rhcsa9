@@ -11,7 +11,6 @@ cat /tmp/rhcsa9mpara.sh
 ```
 mkdir /tmp/11227608.rhcsa9m
 cp res*.txt /tmp/11227608.rhcsa9m
-
 ```
 
 # [IPv4 網路設定](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node33.html)
