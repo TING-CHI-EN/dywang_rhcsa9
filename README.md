@@ -184,6 +184,7 @@ cat re1.txt | grep '[0-9]\{2,\}' > result5.txt
 cat re1.txt | grep '^[A-Z]' > result6.txt
 cat re1.txt | grep '[^\.]$' > result7.txt
 ```
+# [2023.11.02]
 # [群組管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node76.html)
 #### 增加 sharegrp 群組
 ```
@@ -293,11 +294,15 @@ echo qweqwe | passwd --stdin deyu21
 #### 執行 sudo vgs，標準輸出(stdout) 導向到 ~/vgs.21.out。 
 ```
 su - amy
+```
+```
 vgs 2> ~/vgs.9.err
 sudo vgs > ~/vgs.9.out
 ```
 ```
 su - tina
+```
+```
 vgs 2> ~/vgs.21.err
 sudo vgs > ~/vgs.21.out
 ```
