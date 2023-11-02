@@ -1,7 +1,19 @@
 # dywang_rhcsa9
+#### 上課sid
 ```
 echo '4-2 159 11227608 丁啟恩' > sid
 ```
+#### 上課參數檔
+```
+cat /tmp/rhcsa9mpara.sh
+```
+#### 上課txt檔
+```
+mkdir /tmp/11227608.rhcsa9m
+cp res*.txt /tmp/11227608.rhcsa9m
+
+```
+
 # [IPv4 網路設定](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node33.html)
 [kvm8 console]
 
