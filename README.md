@@ -198,6 +198,48 @@ getent group sharegrp
 groupdel sharegrp
 ```
 # [帳號與身份管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node82.html)
+#### useradd：增加使用者
+```
+useradd [-ungGmMd] user
+參數：
+-u:  指定帳號的 UID。 
+-n:  群組為 users。 
+-g:  後接之群組為「主要群組(primary group)」，變動 /etc/passwd。 
+-G:  後接之群組為「附屬群組(supplementary group)」，變動 /etc/group。 
+-M:  不要建立使用者家目錄。 
+-m:  建立使用者家目錄。 
+-d:  指定某個目錄為家目錄，而不使用預設目錄。 
+-s:  指定使用的 shell。
+```
+#### 新增帳號 deyu1，其附屬群組為 sharegrp
+```
+useradd -G sharegrp deyu1
+```
+#### 新增帳號 deyu2，其附屬群組為 sharegrp。
+```
+useradd -G sharegrp deyu2
+```
+#### 新增帳號 deyu3，此帳號不能使用互動式 shell 登入。 
+```
+useradd -s /sbin/nologin deyu3
+```
+#### 檢查帳號 deyu1 及 deyu2，附屬群組為 sharegrp，帳號 deyu3 沒有附屬群組。 
+```
+[root@kvm8 ~]# id deyu1
+uid=1000(deyu1) gid=1001(deyu1) groups=1001(deyu1),1000(sharegrp)
+[root@kvm8 ~]# id deyu2
+uid=1001(deyu2) gid=1002(deyu2) groups=1002(deyu2),1000(sharegrp)
+[root@kvm8 ~]# id deyu3
+uid=1002(deyu3) gid=1003(deyu3) groups=1003(deyu3)
+```
+#### 新增帳號 deyu4，並指定其 uid 為 3584。
+```
+useradd -u 3584 deyu4
+```
+#### userdel 刪除帳號 deyu1
+```
+userdel -r deyu1
+```
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node91.html)
 
     建立用戶帳號
@@ -217,4 +259,45 @@ echo 'hw23csk' | passwd --stdin elva
 echo 'hw23csk' | passwd --stdin eva
 echo 'hw23csk' | passwd --stdin dana
 echo 'hw23csk' | passwd --stdin alice
+```
+# [su與sudo](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node92.html)
+#### 範例：visudo 編輯 /etc/sudoers，增加用戶 deyu9 可免密碼以 root 權限從任何主機執行任何命令。
+```
+visudo
+```
+deyu9	ALL=(ALL) 	NOPASSWD:ALL 
+#### 新增用戶 deyu9
+```
+useradd deyu9
+```
+#### 範例：visudo 編輯 /etc/sudoers，增加群組 dygrp 可以 root 權限從任何主機執行命令 /sbin/hwclock。 
+```
+visudo
+```
+%dygrp	ALL=(ALL) 	/sbin/hwclock
+#### 新增群組 dygrp，並新增用戶 deyu21，其附屬群組為 dygrp。 
+```
+groupadd dygrp
+useradd deyu21 -G dygrp
+```
+#### 設定 deyu21 的密碼 
+```
+echo qweqwe | passwd --stdin deyu21
+```
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node97.html)
+#### 切換用戶 deyu9 
+#### 執行 vgs，標準錯誤(stderr) 導向到 ~/vgs.9.err。 
+#### 執行 sudo vgs，標準輸出(stdout) 導向到 ~/vgs.9.out。 
+#### 切換用戶 deyu21
+#### 執行 vgs，標準錯誤(stderr) 導向到 ~/vgs.21.err。 
+#### 執行 sudo vgs，標準輸出(stdout) 導向到 ~/vgs.21.out。 
+```
+su - amy
+vgs 2> ~/vgs.9.err
+sudo vgs > ~/vgs.9.out
+```
+```
+su - tina
+vgs 2> ~/vgs.21.err
+sudo vgs > ~/vgs.21.out
 ```
