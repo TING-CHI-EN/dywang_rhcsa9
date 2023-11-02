@@ -2,7 +2,7 @@
 ```
 echo '4-2 159 11227608 丁啟恩' > sid
 ```
-# IPv4 網路設定 
+# [IPv4 網路設定](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node33.html)
 [kvm8 console]
 
 #### 1 不必刪除設定，直接使用 modify 選項變更設定。設定 ipv4 位址 192.168.122.8、遮罩 255.255.255.0、GATEWAY 192.168.122.1 及 DNS 192.168.122.1，最後一定要設定 ipv4.method 為 manual，將網路連線設定為手動，也就是自行設定 IP，不是由 DHCP 自動取得，否則原 DHCP 取得的 IP 還會存在。 
@@ -44,7 +44,7 @@ echo 'enp1s0' > /root/netif
 
 echo 'enp1s0' > /root/netcon
 ```
-# [YUM 套件管理]
+# [YUM 套件管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node41.html)
 
 #### 1 撰寫 yum 套件庫 (repository) 設定檔 .repo，以建立 yum 安裝來源，CentOS 8 套件分成 BaseOS 及 AppStream 兩類，必須同時設定。 
 ```
@@ -67,34 +67,24 @@ baseurl=http://dywang.csie.cyut.edu.tw/alma9/AppStream
 
 gpgcheck=0
 ```
-# [systemctl 系統服務控制 ]
-
+# [systemctl 系統服務控制](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node47.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node54.html)
 #### 查看 chronyd 服務是否啟動 (active)？結果導向到 /root/systemd-active。
-```
-systemctl is-active chronyd.service > /root/systemd-active
-```
 #### 查看 chronyd 服務是否開機啟動 (enable)？結果導向到 /root/systemd-enabled。
-```
-systemctl is-enabled chronyd.service > /root/systemd-enable
-```
 #### 把關閉 chronyd 服務的完整指令寫到 /root/systemd-stop。
-```
-echo 'systemctl stop chronyd.service' > /root/systemd-stop
-```
 #### 把啟動 chronyd 服務的完整指令寫到 /root/systemd-start。
-```
-echo 'systemctl start chronyd.service' > /root/systemd-start
-```
 #### 把重新啟動 chronyd 服務的完整指令寫到 /root/systemd-restart。
-```
-echo 'systemctl restart chronyd.service' > /root/systemd-restart
-```
 #### 把查詢 chronyd 服務狀態的完整指令寫到 /root/systemd-status。
 ```
+systemctl is-active chronyd.service > /root/systemd-active
+systemctl is-enabled chronyd.service > /root/systemd-enable
+echo 'systemctl stop chronyd.service' > /root/systemd-stop
+echo 'systemctl start chronyd.service' > /root/systemd-start
+echo 'systemctl restart chronyd.service' > /root/systemd-restart
 echo 'systemctl status chronyd.service' > /root/systemd-status
 ```
-# [SELinux]
-## [實機練習]
+# [SELinux](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node55.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node62.html)
 #### 查詢 http_port_t，82 port 不是 httpd 程序允許訪問的 port。 
 ```
 semanage port --list | grep http
@@ -139,43 +129,29 @@ web test1
 [root@kvm8 ~]# curl http://127.0.0.1:82/file2
 
 web test2
-
-## [實機練習]
+# [資料導向與管線處理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node71.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node75.html)
 #### ls /etc/audit 導向到 /root/redirect1
+#### ls /etcdy 錯誤導向到 /root/redirect2
+#### ls /usr/local 導向到 /root/redirect3
+#### ls /usr/etcdy 錯誤累加導向到 /root/redirect3
+#### ls /bin/a* /lib64/autofs1 的 stdout 及 stderr 同時導向到 /root/redirect4
+
+#### 從檔案 /usr/share/doc/xz/README 中找出所有包含字串 info 的行列，導向到檔案 /root/info。
+#### 從檔案 txtfile (例如 /usr/share/doc/systemd/LICENSES/OFL-1.1.txt) 中找出所有包含字串 str 的行列，導向到檔案 wlist。
+#### 使用 nmcli 命令 show 目前的網路連線設定，經由管線命令找出包含 ipv4 IPV4 ip4 IP4 等字串的行，導向到檔案 myipv4。
 ```
 ls /etc/audit/ > /root/redirect1
-```
-#### ls /etcdy 錯誤導向到 /root/redirect2
-```
 ls /etcdy 2> /root/redirect2
-```
-#### ls /usr/local 導向到 /root/redirect3
-```
 ls /usr/local/ > /root/redirect3
-```
-#### ls /usr/etcdy 錯誤累加導向到 /root/redirect3
-```
 ls /usr/etcdy 2>> /root/redirect3
-```
-#### ls /bin/a* /lib64/autofs1 的 stdout 及 stderr 同時導向到 /root/redirect4
-```
 ls /bin/a* /lib64/autofs1 > /root/redirect4 2>&1
-```
-
-從檔案 /usr/share/doc/xz/README 中找出所有包含字串 info 的行列，導向到檔案 /root/info。
-```
 cat /usr/share/doc/xz/README | grep info > /root/info
-```
-從檔案 txtfile (例如 /usr/share/doc/systemd/LICENSES/OFL-1.1.txt) 中找出所有包含字串 str 的行列，導向到檔案 wlist。
-```
 cat /usr/share/doc/systemd/LICENSES/OFL-1.1.txt | grep and > /root/11227608list
-```
-使用 nmcli 命令 show 目前的網路連線設定，經由管線命令找出包含 ipv4 IPV4 ip4 IP4 等字串的行，導向到檔案 myipv4。
-```
 nmcli connection show enp1s0 | grep -iE ipv?4 > /root/11227608ip
 ```
-
-## [正規表達式]
+# [正規表達式](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node63.html)
+## [實機練習一](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node68.html)
 在自己的家目錄建立一個新的目錄 zzz。
 進入目錄 zzz。
 下載檔案 re1.txt
