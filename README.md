@@ -184,3 +184,37 @@ cat re1.txt | grep '[0-9]\{2,\}' > result5.txt
 cat re1.txt | grep '^[A-Z]' > result6.txt
 cat re1.txt | grep '[^\.]$' > result7.txt
 ```
+# [群組管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node76.html)
+#### 增加 sharegrp 群組
+```
+groupadd sharegrp
+```
+#### 查詢 sharegrp 群組是否存在？ 
+```
+getent group sharegrp
+```
+#### 刪除 sharegrp 群組
+```
+groupdel sharegrp
+```
+# [帳號與身份管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node82.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node91.html)
+
+    建立用戶帳號
+        deyu1 附屬群組為 sharegrp
+        deyu2 附屬群組為 sharegrp
+        deyu3 無法使用 shell 登入
+        deyu4 指定 uid 為 3854
+        四個帳號的密碼皆設定為 123qwe
+    帳號名稱、UID、附屬群組設定錯誤皆可使用 usermod 修改。
+    若刪除帳號重新新增，刪除時必須連「家目錄」一併刪除，否則新增的帳號可能無法存取家目錄。
+```
+useradd -G 11227608g elva
+useradd -G 11227608g eva
+useradd -s /sbin/nologin dana
+useradd -u 3567 alice
+echo 'hw23csk' | passwd --stdin elva
+echo 'hw23csk' | passwd --stdin eva
+echo 'hw23csk' | passwd --stdin dana
+echo 'hw23csk' | passwd --stdin alice
+```
