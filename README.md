@@ -255,14 +255,14 @@ userdel -r deyu1
     帳號名稱、UID、附屬群組設定錯誤皆可使用 usermod 修改。
     若刪除帳號重新新增，刪除時必須連「家目錄」一併刪除，否則新增的帳號可能無法存取家目錄。
 ```
-useradd -G 11227608g elva
-useradd -G 11227608g eva
-useradd -s /sbin/nologin dana
-useradd -u 3567 alice
-echo 'hw23csk' | passwd --stdin elva
-echo 'hw23csk' | passwd --stdin eva
-echo 'hw23csk' | passwd --stdin dana
-echo 'hw23csk' | passwd --stdin alice
+useradd -G 11227608g elvat
+useradd -G 11227608g evat
+useradd -s /sbin/nologin danat
+useradd -u 3567 alicet
+echo 'hw23cskt' | passwd --stdin elvat
+echo 'hw23cskt' | passwd --stdin evat
+echo 'hw23cskt' | passwd --stdin danat
+echo 'hw23cskt' | passwd --stdin alicet
 ```
 # [su與sudo](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node92.html)
 #### 範例：visudo 編輯 /etc/sudoers，增加用戶 deyu9 可免密碼以 root 權限從任何主機執行任何命令。
@@ -296,14 +296,14 @@ echo qweqwe | passwd --stdin deyu21
 #### 執行 vgs，標準錯誤(stderr) 導向到 ~/vgs.21.err。 
 #### 執行 sudo vgs，標準輸出(stdout) 導向到 ~/vgs.21.out。 
 ```
-su - amy
+su - amyt
 ```
 ```
 vgs 2> ~/vgs.9.err
 sudo vgs > ~/vgs.9.out
 ```
 ```
-su - tina
+su - tinat
 ```
 ```
 vgs 2> ~/vgs.21.err
@@ -373,23 +373,23 @@ umask 0002
     + 觀察 deyu1.f 及 deyu2.f 所屬的群組，看看 deyu1 能不能更改 deyu2.f 內容？deyu2 是否可以變更 deyu1.f 內容？
     + deyu4 不屬於 sharegrp 群組，測試 deyu4 是否可以進入 /home/shared 目錄？將標準錯誤(stderr)導向到 /home/deyu4/cd.shared。
 ```
-touch mfile2
-mkdir mdir2
+touch mfile2t
+mkdir mdir2t
 ```
 ```
-mkdir /home/11227608d
-chgrp 11227608g /home/11227608d/
-chmod 2770 /home/11227608d/
+mkdir /home/11227608dt
+chgrp 11227608gt /home/11227608dt/
+chmod 2770 /home/11227608dt/
 ```
 ```
 su - elva
-touch /home/11227608d/elva.f
+touch /home/11227608dt/elvat.f
 ```
 ```
 su - eva
-touch /home/11227608d/eva.f
+touch /home/11227608dt/evat.f
 ```
 ```
-su - alice
-cd /home/11227608d/ 2> /home/alice/cd.shared
+su - alicet
+cd /home/11227608dt/ 2> /home/alicet/cd.shared
 ```
