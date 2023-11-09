@@ -376,3 +376,20 @@ umask 0002
 touch mfile2
 mkdir mdir2
 ```
+```
+mkdir /home/11227608d
+chgrp 11227608g /home/11227608d/
+chmod 2770 /home/11227608d/
+```
+```
+su - elva
+touch /home/11227608d/elva.f
+```
+```
+su - eva
+touch /home/11227608d/eva.f
+```
+```
+su - alice
+cd /home/11227608d/ 2> /home/alice/cd.shared
+```
