@@ -309,4 +309,4 @@ su - tina
 vgs 2> ~/vgs.21.err
 sudo vgs > ~/vgs.21.out
 ```
-# [帳號密碼策略]((https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)
+# [帳號密碼策略](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)
