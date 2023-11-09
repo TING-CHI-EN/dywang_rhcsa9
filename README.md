@@ -362,3 +362,17 @@ chage -l deyu12 | tee > /root/chage2
 vim .bashrc
 ```
 umask 0002
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node111.html)
+1. 建立用戶的預設權限。
+    + 設定帳號 deyu6 預設權限為 0002，且登入後必須立即生效。
+    + deyu6 登入後，分別建立 maskf 檔案及 maskd 目錄。
+    + 觀察檔案 maskf 的屬性是否為 664？目錄 maskd 的屬性是否為 775？
+2. 建立 sharegrp 團隊工作目錄， deyu1.f, deyu2.f 中的 deyu1, deyu2 請依參數檔變更。
+    + 建立 /home/shared 目錄，並設定其為群組 sharegrp 團隊工作目錄，擁有者及群組有rwx權限，其他沒有任何權限，且SETGID。
+    + deyu1 與 deyu2 都屬於 sharegrp 群組，分別用 deyu1 及 deyu2 帳號在 /home/shared 目錄中建立檔案 deyu1.f 及 deyu2.f。
+    + 觀察 deyu1.f 及 deyu2.f 所屬的群組，看看 deyu1 能不能更改 deyu2.f 內容？deyu2 是否可以變更 deyu1.f 內容？
+    + deyu4 不屬於 sharegrp 群組，測試 deyu4 是否可以進入 /home/shared 目錄？將標準錯誤(stderr)導向到 /home/deyu4/cd.shared。
+```
+touch mfile2
+mkdir mdir2
+```
