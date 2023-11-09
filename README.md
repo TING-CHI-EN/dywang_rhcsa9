@@ -309,7 +309,7 @@ su - tina
 vgs 2> ~/vgs.21.err
 sudo vgs > ~/vgs.21.out
 ```
-
+# [2023.11.09]
 # [帳號密碼策略](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)
 
 ```
@@ -356,3 +356,9 @@ chage -W 7 deyu12
 chage -l deyu11 | tee > /root/chage1
 chage -l deyu12 | tee > /root/chage2
 ```
+# [Linux 檔案權限與屬性](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node104.html)
+#### 要讓 deyu6 的 umask 維持 0002，必須將其寫入 .bashrc。 
+```
+vim .bashrc
+```
+umask 0002
