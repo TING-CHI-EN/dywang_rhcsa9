@@ -309,4 +309,50 @@ su - tina
 vgs 2> ~/vgs.21.err
 sudo vgs > ~/vgs.21.out
 ```
+
 # [帳號密碼策略](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node98.html)
+
+```
+vim /etc/login.defs
+```
+```
+# Password aging controls:
+#
+# 密碼需要重新變更的天數，99999 表示密碼不需要重新設定。
+#	PASS_MAX_DAYS	Maximum number of days a password may be used.
+# 密碼不可被更動的天數，0 表示密碼隨時可以更動。
+#	PASS_MIN_DAYS	Minimum number of days allowed between password changes.
+# 密碼最短長度，5 表示密碼不能少於5個字元。
+#	PASS_MIN_LEN	Minimum acceptable password length.
+# 密碼需要變更前的警告，7 表示7天之內系統會警告帳號。
+#	PASS_WARN_AGE	Number of days warning given before a password expires.
+#
+PASS_MAX_DAYS	99999
+PASS_MIN_DAYS	0
+PASS_MIN_LEN	5
+PASS_WARN_AGE	7
+```
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node103.html)
+```
+要看參數檔
+設定預設密碼過期略策，也就是新增的帳號，其密碼會有以下策略。
+    最長不用變更天數 30
+    可以變更的最短天數 4
+    密碼過期前 6 天警告
+    密碼長度至少 8
+新增帳號 deyu11，chage 查看是否如預設，以管線命令配合 tee 命令導向到 /root/chage1。
+新增帳號 deyu12，chage 設定
+    最長不用變更天數 20
+    可以變更的最短天數 7
+    密碼過期前 4 天警告
+chage 查看 deyu12帳號，是否如變更，並導向 /root/chage2。
+```
+```
+useradd deyu11
+useradd deyu12
+chage -M 19 deyu12
+chage -m 2 deyu12
+chage -W 7 deyu12
+chage -l deyu11 | tee > /root/chage1
+chage -l deyu12 | tee > /root/chage2
+```
