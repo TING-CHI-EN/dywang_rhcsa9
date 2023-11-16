@@ -395,13 +395,13 @@ cd /home/11227608dt/ 2> /home/alicet/cd.shared
 ```
 # [2023.11.16]
 # [Access Control Lists](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node112.html)
-#### 先複製測試檔案 
+#### 先複製測試檔案 (參數檔看fstab)
 ```
-cp /etc/fstab /var/tmp/
+cp /etc/auto.net /var/tmp/
 ```
 #### 查看複製的檔案擁有者，群組皆為 root，目前權限為 644，root 有讀取及寫入的權限。 
 ```
-ll /var/tmp/fstab
+ll /var/tmp/auto.net
 ```
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node116.html)
 ```
@@ -418,6 +418,6 @@ ll /var/tmp/fstab
     - 不要變動其他設定
 ```
 ```
-setfacl -m u:elva:rw /var/tmp/fstab
-setfacl -m u:eva:- /var/tmp/fstab
+setfacl -m u:elva:rw /var/tmp/auto.net
+setfacl -m u:eva:- /var/tmp/auto.net
 ```
