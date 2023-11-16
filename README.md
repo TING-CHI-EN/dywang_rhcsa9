@@ -442,3 +442,16 @@ systemctl restart chronyd.service
 pool 2.almalinux.pool.ntp.org iburst
 pool server.deyu.wang iburst
 ```
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node127.html)
+```
+設定自動效時
+    自動校時伺服器 server.deyu.wang
+    確認 chronyd 服務是否開機啟動 (enable)？導向到 /root/chronyd-enabled。
+    確認 chronyd 服務是否啟動 (active)？導向到 /root/chronyd-active
+    chronyc 查詢設定的伺服器是否出現？管線處理過濾 deyu，導向到 /root/chronyc-sources。
+```
+```
+systemctl is-active chronyd.service > /root/chronyd-active
+systemctl is-enabled chronyd.service > /root/chronyd-enabled
+chronyc sources | grep deyu > /root/chronyc-sources
+```
