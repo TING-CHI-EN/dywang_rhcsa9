@@ -421,3 +421,5 @@ ll /var/tmp/auto.net
 setfacl -m u:elva:rw /var/tmp/auto.net
 setfacl -m u:eva:- /var/tmp/auto.net
 ```
+# [例行性命令](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node117.html)
+#### 分 時 日 月 周
