@@ -423,3 +423,22 @@ setfacl -m u:eva:- /var/tmp/auto.net
 ```
 # [例行性命令](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node117.html)
 #### 分 時 日 月 周
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node121.html)
+```
+* */18 * * * /bin/echo hello_s11227608_sa
+24 3-16 * * * /bin/echo hello_s11227608_sa
+45 13 10,29 * * /bin/echo hello_s11227608_sa
+*/25 3 * * 1 bin/echo hello_s11227608_sa
+52 8 * * * bin/echo hello_s11227608_sa
+```
+# [Chronyd vs. ntpd 校時](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node122.html)
+```
+vim /etc/chrony.conf
+systemctl restart chronyd.service
+```
+```
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (https://www.pool.ntp.org/join.html).
+pool 2.almalinux.pool.ntp.org iburst
+pool server.deyu.wang iburst
+```
