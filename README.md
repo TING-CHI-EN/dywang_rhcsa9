@@ -393,3 +393,31 @@ touch /home/11227608dt/evat.f
 su - alicet
 cd /home/11227608dt/ 2> /home/alicet/cd.shared
 ```
+# [2023.11.16]
+# [Access Control Lists](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node112.html)
+#### 先複製測試檔案 
+```
+cp /etc/fstab /var/tmp/
+```
+#### 查看複製的檔案擁有者，群組皆為 root，目前權限為 644，root 有讀取及寫入的權限。 
+```
+ll /var/tmp/fstab
+```
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node116.html)
+```
+1. 建立包含 ACL 的檔案
+    - 複製 /etc/fstab 到 /var/tmp 目錄下
+    - 查看 /var/tmp 目錄下的 fstab 檔案，其 acl 有無特殊的用戶權限設定？
+    - 設定 deyu1 可讀寫 fstab
+    - 設定 deyu2 不可讀寫 fstab
+    - 不要變動其他設定
+2. 變更 ACL 的檔案
+    - 查看 /var/tmp 目錄下的 fstab 檔案，其 acl 有無特殊的用戶權限設定？
+    - 設定 deyu4 可讀寫 fstab
+    - 刪除 deyu4 可讀寫 fstab
+    - 不要變動其他設定
+```
+```
+setfacl -m u:elva:rw /var/tmp/fstab
+setfacl -m u:eva:- /var/tmp/fstab
+```
