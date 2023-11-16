@@ -255,14 +255,14 @@ userdel -r deyu1
     帳號名稱、UID、附屬群組設定錯誤皆可使用 usermod 修改。
     若刪除帳號重新新增，刪除時必須連「家目錄」一併刪除，否則新增的帳號可能無法存取家目錄。
 ```
-useradd -G 11227608g elvat
-useradd -G 11227608g evat
-useradd -s /sbin/nologin danat
-useradd -u 3567 alicet
-echo 'hw23cskt' | passwd --stdin elvat
-echo 'hw23cskt' | passwd --stdin evat
-echo 'hw23cskt' | passwd --stdin danat
-echo 'hw23cskt' | passwd --stdin alicet
+useradd -G s11227608g felix
+useradd -G s11227608g cara
+useradd -s /sbin/nologin mono
+useradd -u 3569 ann
+echo 'hdw2csk' | passwd --stdin felix
+echo 'hdw2csk' | passwd --stdin cara
+echo 'hdw2csk' | passwd --stdin mono
+echo 'hdw2csk' | passwd --stdin ann
 ```
 # [su與sudo](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node92.html)
 #### 範例：visudo 編輯 /etc/sudoers，增加用戶 deyu9 可免密碼以 root 權限從任何主機執行任何命令。
@@ -296,14 +296,14 @@ echo qweqwe | passwd --stdin deyu21
 #### 執行 vgs，標準錯誤(stderr) 導向到 ~/vgs.21.err。 
 #### 執行 sudo vgs，標準輸出(stdout) 導向到 ~/vgs.21.out。 
 ```
-su - amyt
+su - amy
 ```
 ```
 vgs 2> ~/vgs.9.err
 sudo vgs > ~/vgs.9.out
 ```
 ```
-su - tinat
+su - tina
 ```
 ```
 vgs 2> ~/vgs.21.err
@@ -350,9 +350,9 @@ chage 查看 deyu12帳號，是否如變更，並導向 /root/chage2。
 ```
 useradd deyu11
 useradd deyu12
-chage -M 19 deyu12
-chage -m 2 deyu12
-chage -W 7 deyu12
+chage -M 29 deyu12
+chage -m 8 deyu12
+chage -W 9 deyu12
 chage -l deyu11 | tee > /root/chage1
 chage -l deyu12 | tee > /root/chage2
 ```
@@ -377,21 +377,21 @@ touch mfile2t
 mkdir mdir2t
 ```
 ```
-mkdir /home/11227608dt
-chgrp 11227608gt /home/11227608dt/
-chmod 2770 /home/11227608dt/
+mkdir /home/s11227608d
+chgrp s11227608g /home/s11227608d/
+chmod 2770 /home/11227608d/
 ```
 ```
-su - elva
-touch /home/11227608dt/elvat.f
+su - felix
+touch /home/s11227608d/felix.f
 ```
 ```
-su - eva
-touch /home/11227608dt/evat.f
+su - cara
+touch /home/s11227608d/cara.f
 ```
 ```
-su - alicet
-cd /home/11227608dt/ 2> /home/alicet/cd.shared
+su - ann
+cd /home/s11227608d/ 2> /home/ann/cd.shared
 ```
 # [2023.11.16]
 # [Access Control Lists](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node112.html)
@@ -418,8 +418,8 @@ ll /var/tmp/auto.net
     - 不要變動其他設定
 ```
 ```
-setfacl -m u:elva:rw /var/tmp/auto.net
-setfacl -m u:eva:- /var/tmp/auto.net
+setfacl -m u:felix:rw /var/tmp/auto.net
+setfacl -m u:cara:- /var/tmp/auto.net
 ```
 # [例行性命令](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node117.html)
 #### 分 時 日 月 周
@@ -434,13 +434,15 @@ setfacl -m u:eva:- /var/tmp/auto.net
 # [Chronyd vs. ntpd 校時](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node122.html)
 ```
 vim /etc/chrony.conf
-systemctl restart chronyd.service
 ```
 ```
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 pool 2.almalinux.pool.ntp.org iburst
 pool server.deyu.wang iburst
+```
+```
+systemctl restart chronyd.service
 ```
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node127.html)
 ```
