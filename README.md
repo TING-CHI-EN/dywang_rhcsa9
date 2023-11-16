@@ -428,8 +428,8 @@ setfacl -m u:eva:- /var/tmp/auto.net
 * */18 * * * /bin/echo hello_s11227608_sa
 24 3-16 * * * /bin/echo hello_s11227608_sa
 45 13 10,29 * * /bin/echo hello_s11227608_sa
-*/25 3 * * 1 bin/echo hello_s11227608_sa
-52 8 * * * bin/echo hello_s11227608_sa
+*/25 3 * * 1 /bin/echo hello_s11227608_sa
+52 8 * * * /bin/echo hello_s11227608_sa
 ```
 # [Chronyd vs. ntpd 校時](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node122.html)
 ```
