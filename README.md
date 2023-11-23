@@ -460,3 +460,91 @@ systemctl is-active chronyd.service > /root/chronyd-active
 systemctl is-enabled chronyd.service > /root/chronyd-enabled
 chronyc sources | grep deyu > /root/chronyc-sources
 ```
+# [2023.11.23]
+# [Network File System, NFS](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node128.html)
+#### 如果沒有 nfs-utils，必須先安裝。 
+```
+dnf install nfs-utils
+```
+#### 如果沒安裝 autofs 套件，必須先安裝。
+```
+dnf install autofs
+```
+#### 建立主要設定檔 /etc/auto.master
+    1. 格式：<預設目錄> <資料對應檔>
+    2. 預設目錄：用戶端要使用 /home/guests/ldapuser1，會到資料對應檔中找次目錄 ldapuser1 的對應。
+    3. 資料對應檔的檔名是可以自行設定的，此例中使用 /etc/auto.dyw。
+```
+vim /etc/auto.master
+```
+```
+#
+# Sample auto.master file
+# This is a 'master' automounter map and it has the following format:
+# mount-point [map-type[,format]:]map [options]
+# For details of the format look at auto.master(5).
+#
+/rhome /etc/auto.dyw
+/misc   /etc/auto.misc
+```
+#### 建立資料對應檔內的掛載資訊，若 NFS server 有限制版本為 v3，則必須加入參數 -vers=3。 
+```
+vim /etc/auto.dyw
+```
+```
+*  -vers=3  deyu.wang:/home/guests/&
+```
+#### 設定開機即啟動 autofs 
+```
+systemctl enable autofs
+```
+#### 重新啟動 autofs 服務
+```
+systemctl restart autofs
+```
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node135.html)
+```
+autofs = /home/quests = /rhome
+自動掛載設定
+    - 查看 deyu.wang 分享的 NFS 目錄，看是否有 /home/guests？查詢結果導向到 /root/smount。
+    - getent 查看系統中是否有 ldapuser1 帳號，導向到 /root/ldapuser，觀察其家目錄在哪？
+    - 設定自掛載伺服器 deyu.wang:/home/guests 到本機的 /home/guests。
+    - 掛載 NFS 版本為 3。
+    - 切換用戶為 ldapuser1，看是否有家目錄？
+    - 確認 autofs 服務是否開機啟動 (enable)？導向到 /root/autofs-enabled。
+    - 確認 autofs 服務是否啟動 (active)？導向到 /root/autofs-active。
+```
+```
+showmount -e deyu.wang > /root/smount
+getent passwd ldapuser3 > /root/ldapuser
+systemctl is-enabled autofs.service > /root/autofs-enabled
+systemctl is-active autofs.service > /root/autofs-active
+```
+# [檔案搜尋](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node136.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node141.html)
+```
+找用戶檔案
+    找系統中所有屬於 deyu8 的檔案
+    建立目錄 /root/findresults
+    將找到的檔案複製到 /root/findresults 目錄中
+找特定大小檔案
+    找目錄 /usr/share 中大於 1M 的檔案，導向到 /root/find1
+    找目錄 /usr/share 中小於 5M 的檔案，導向到 /root/find2
+    找目錄 /usr/share 中小於 300k 且大於 250k 的檔案，導向到 /root/find3
+找特定屬性檔案
+    找目錄 /etc/systemd 屬性包含 664 的檔案，導向到 /root/find4
+    找系統中屬性包含 SUID 的檔案，導向到 /root/find5
+    找系統中屬性包含 SGID 的檔案，導向到 /root/find6
+    找系統中屬性包含 SBIT 的檔案，導向到 /root/find7
+```
+```
+mkdir /root/mfindr
+find / -user deyu8 2> /dev/null | xargs cp -t /root/mfindr/
+find /usr/share -size +1M > /root/find1
+find /usr/share -size -5M > /root/find2
+find /usr/share -size +250k -size -300k > /root/find3
+find /etc/systemd/ -perm -664 > /root/find4
+find / -perm -4000 > /root/find5
+find / -perm -2000 > /root/find6
+find / -perm -1000 > /root/find7
+```
