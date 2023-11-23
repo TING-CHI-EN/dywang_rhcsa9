@@ -425,6 +425,9 @@ setfacl -m u:cara:- /var/tmp/auto.net
 #### 分 時 日 月 周
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node121.html)
 ```
+crontab -u alice -e
+```
+```
 * */18 * * * /bin/echo hello_s11227608_sa
 24 3-16 * * * /bin/echo hello_s11227608_sa
 45 13 10,29 * * /bin/echo hello_s11227608_sa
