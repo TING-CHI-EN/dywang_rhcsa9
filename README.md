@@ -585,7 +585,7 @@ find / -perm -2000
 find / -perm -1000
 ```
 ```
-mv nfinde /usr/local/bin/
+mv nfinde /usr/bin/
 ```
 # [檔案打包壓縮](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node148.html)
 #### 安裝bzip2
