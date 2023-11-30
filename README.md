@@ -587,3 +587,34 @@ find / -perm -1000
 ```
 mv nfinde /usr/local/bin/
 ```
+# [檔案打包壓縮](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node148.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node151.html)
+```
+將整個 /usr/local (由變數 tzdir 決定) 目錄整個打包壓縮成以下檔案：
+    壓縮方式 gzip，存成檔案 /root/tzfile.tgz。
+    壓縮方式 bzip2，存成檔案 /root/tzfile.tar.bz2。
+    壓縮方式 xz，存成檔案 /root/tzfile.tar.xz。
+不解開打包壓縮檔的情況下，查看以下檔案的內容，看是否與原始資料相同？
+    /root/tzfile.tgz 查看結果導向到 /root/tzfile.tgz.t。
+    /root/tzfile.tar.bz2 查看結果導向到 /root/tzfile.tar.bz2.t。
+    /root/tzfile.tar.xz 查看結果導向到 /root/tzfile.tar.xz.t。
+解壓縮打包，查看解開的檔案是否與原始資料相同？
+    建立目錄 /root/mytar.gz
+    切換工作目錄到 /root/mytar.gz
+    解打包壓縮 /root/tzfile.tgz
+    建立目錄 /root/mytar.bz
+    切換工作目錄到 /root/mytar.bz
+    解打包壓縮 /root/tzfile.tar.bz2
+    建立目錄 /root/mytar.xz
+    切換工作目錄到 /root/mytar.xz
+    解打包壓縮 /root/tzfile.tar.xz
+```
+```
+tar zcvf /root/tarf.tgz /etc/pki/
+tar jcvf /root/tarf.tar.bz2 /etc/pki/
+tar Jcvf /root/tarf.tar.xz /etc/pki/
+
+tar ztvf /root/tarf.tgz > /root/tarf.tgz.t
+tar jtvf /root/tarf.tar.bz2 > /root/tarf.tar.bz2.t
+tar jtvf /root/tarf.tar.xz > /root/tarf.tar.xz.t
+```
