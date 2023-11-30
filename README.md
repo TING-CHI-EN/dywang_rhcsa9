@@ -618,3 +618,16 @@ tar ztvf /root/tarf.tgz > /root/tarf.tgz.t
 tar jtvf /root/tarf.tar.bz2 > /root/tarf.tar.bz2.t
 tar jtvf /root/tarf.tar.xz > /root/tarf.tar.xz.t
 ```
+```
+mkdir /root/mytar.gz
+mkdir /root/mytar.bz
+mkdir /root/mytar.xz
+cd mytar.gz/
+tar zxvf /root/tarf.tgz 
+cd ..
+cd mytar.bz
+tar jxvf /root/tarf.tar.bz2 
+cd ..
+cd mytar.xz/
+tar Jxvf /root/tarf.tar.xz 
+```
