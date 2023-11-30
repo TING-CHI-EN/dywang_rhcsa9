@@ -548,3 +548,42 @@ find / -perm -4000 > /root/find5
 find / -perm -2000 > /root/find6
 find / -perm -1000 > /root/find7
 ```
+# [2023.11.30]
+# [Shell Script](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node142.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node141.html)
+```
+寫腳本 newfind.sh
+    第一行 shebang 宣告使用的直譯器指令
+    newfind.sh 所有人可執行
+    找目錄 /usr 中小於 300k 且大於 250k 的檔案，導向到 /root/newfind.txt
+    把 newfind.sh 放到 PATH 路徑可以找到的 /usr/local/bin 目錄，讓所有人可以不用指定路徑就可執行。
+寫腳本 newfind1.sh 找特定屬性檔案
+    第一行 shebang 宣告使用的直譯器指令
+    腳本包含以下三行命令
+        找系統中屬性包含 SUID 的檔案
+        找系統中屬性包含 SGID 的檔案
+        找系統中屬性包含 SBIT 的檔案
+    把 newfind1.sh 放到 PATH 路徑可以找到的 /usr/bin 目錄，讓所有人可以不用指定路徑就可執行。
+```
+```
+vim nfindf
+```
+```
+#!/bin/bash
+find /usr -size +250k -size -300k > /root/nfindf.txt
+```
+```
+mv nfindf /usr/local/bin/
+```
+```
+vim nfinde
+```
+```
+#!/bin/bash
+find / -perm -4000
+find / -perm -2000
+find / -perm -1000
+```
+```
+mv nfinde /usr/local/bin/
+```
