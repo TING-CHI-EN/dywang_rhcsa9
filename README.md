@@ -550,7 +550,7 @@ find / -perm -1000 > /root/find7
 ```
 # [2023.11.30]
 # [Shell Script](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node142.html)
-## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node141.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node147.html)
 ```
 寫腳本 newfind.sh
     第一行 shebang 宣告使用的直譯器指令
