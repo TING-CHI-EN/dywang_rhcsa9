@@ -566,17 +566,18 @@ find / -perm -1000 > /root/find7
     把 newfind1.sh 放到 PATH 路徑可以找到的 /usr/bin 目錄，讓所有人可以不用指定路徑就可執行。
 ```
 ```
-vim nfindf
+vim nfindw
 ```
 ```
 #!/bin/bash
-find /usr -size +250k -size -300k > /root/nfindf.txt
+find /usr -size +250k -size -300k > /root/nfindw.txt
 ```
 ```
-mv nfindf /usr/local/bin/
+chmod +x nfindw
+mv nfindw /usr/local/bin/
 ```
 ```
-vim nfinde
+vim nfindf1
 ```
 ```
 #!/bin/bash
@@ -585,7 +586,8 @@ find / -perm -2000
 find / -perm -1000
 ```
 ```
-mv nfinde /usr/bin/
+chmod +x nfindw
+mv nfindf1 /usr/bin/
 ```
 # [檔案打包壓縮](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node148.html)
 #### 安裝bzip2
