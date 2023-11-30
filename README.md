@@ -588,6 +588,10 @@ find / -perm -1000
 mv nfinde /usr/local/bin/
 ```
 # [檔案打包壓縮](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node148.html)
+#### 安裝bzip2
+```
+dnf install bzip2
+```
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node151.html)
 ```
 將整個 /usr/local (由變數 tzdir 決定) 目錄整個打包壓縮成以下檔案：
