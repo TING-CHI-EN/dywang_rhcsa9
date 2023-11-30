@@ -614,24 +614,24 @@ dnf install bzip2
     解打包壓縮 /root/tzfile.tar.xz
 ```
 ```
-tar zcvf /root/tarf.tgz /etc/pki/
-tar jcvf /root/tarf.tar.bz2 /etc/pki/
-tar Jcvf /root/tarf.tar.xz /etc/pki/
+tar zcvf /root/tarfw.tgz /etc/pm/
+tar jcvf /root/tarfw.tar.bz2 /etc/pm/
+tar Jcvf /root/tarfw.tar.xz /etc/pm/
 
-tar ztvf /root/tarf.tgz > /root/tarf.tgz.t
-tar jtvf /root/tarf.tar.bz2 > /root/tarf.tar.bz2.t
-tar jtvf /root/tarf.tar.xz > /root/tarf.tar.xz.t
+tar ztvf /root/tarfw.tgz > /root/tarfw.tgz.t
+tar jtvf /root/tarfw.tar.bz2 > /root/tarfw.tar.bz2.t
+tar jtvf /root/tarfw.tar.xz > /root/tarfw.tar.xz.t
 ```
 ```
 mkdir /root/mytar.gz
 mkdir /root/mytar.bz
 mkdir /root/mytar.xz
 cd mytar.gz/
-tar zxvf /root/tarf.tgz 
+tar zxvf /root/tarfw.tgz 
 cd ..
 cd mytar.bz
-tar jxvf /root/tarf.tar.bz2 
+tar jxvf /root/tarfw.tar.bz2 
 cd ..
 cd mytar.xz/
-tar Jxvf /root/tarf.tar.xz 
+tar Jxvf /root/tarfw.tar.xz 
 ```
