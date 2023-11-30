@@ -620,7 +620,7 @@ tar Jcvf /root/tarfw.tar.xz /etc/pm/
 
 tar ztvf /root/tarfw.tgz > /root/tarfw.tgz.t
 tar jtvf /root/tarfw.tar.bz2 > /root/tarfw.tar.bz2.t
-tar jtvf /root/tarfw.tar.xz > /root/tarfw.tar.xz.t
+tar Jtvf /root/tarfw.tar.xz > /root/tarfw.tar.xz.t
 ```
 ```
 mkdir /root/mytar.gz
