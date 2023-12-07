@@ -647,6 +647,7 @@ tar Jxvf /root/tarfw.tar.xz
     查詢 images，確認 dywrsyslog 及 prsyslog 是否建立？
 ```
 ```
+ssh deyu5@kvm8
 vim Podmanfile
 ```
 ```
