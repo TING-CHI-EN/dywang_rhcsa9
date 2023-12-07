@@ -79,7 +79,16 @@ podman generate systemd --name mserver --files
 podman generate systemd --name pserver --files
 systemctl --user daemon-reload
 
+systemctl --user enable --now container-mserver.service 
+systemctl --user enable --now container-pserver.service 
 
+podman exec -it mserver /bin/bash
+logger -p local3.info 'nhy qaz vsfr'
+exit
+
+podman exec -it pserver /bin/bash
+logger -p local4.info 'iiis sas qsa afr'
+exit
 
 # 都還不對
 ssh deyu5@kvm8
