@@ -31,3 +31,37 @@ tar jxvf /root/tarff.tar.bz2
 cd ..
 cd mytar.xz/
 tar Jxvf /root/tarff.tar.xz
+
+
+# 都還不對
+ssh deyu5@kvm8
+echo 'FROM registry.csie.cyut.edu.tw/rsyslog
+MAINTAINER dywang@csie.cyut.edu.tw
+
+RUN echo 'local4.*     /var/log/journal/podmanfile.log' >> /etc/rsyslog.conf' > Podmanfile
+
+podman pull registry.csie.cyut.edu.tw/dywrsyslog
+podman build --tag podimg --file Podmanfile
+
+podman create --name mserver --privileged --volume /home/deyu5/container_journal/:/var/log/journal/:Z dywrsyslog:latest
+
+mkdir -p .config/systemd/user/
+cd .config/systemd/user/
+
+podman generate systemd --name mserver --files
+
+systemctl --user daemon-reload
+systemctl --user enable --now container-mserver.service
+
+exit
+
+loginctl enable-linger deyu5
+
+reboot
+ssh root@kvm8.deyu.wang
+podman exec -it mserver /bin/bash
+logger -p local3.info 'gg'
+cat /var/log/journal/csie.cyut.log
+exit
+ll container_journal/
+cat container_journal/csie.cyut.log
