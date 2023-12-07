@@ -647,6 +647,15 @@ tar Jxvf /root/tarfw.tar.xz
     查詢 images，確認 dywrsyslog 及 prsyslog 是否建立？
 ```
 ```
+vim Podmanfile
+```
+```
+FROM registry.csie.cyut.edu.tw/rsyslog
+MAINTAINER dywang@csie.cyut.edu.tw
+
+RUN echo 'local4.*     /var/log/journal/podmanfile.log' >> /etc/rsyslog.conf
+```
+```
 podman pull registry.csie.cyut.edu.tw/dywrsyslog
 podman build --tag podimg --file Podmanfile
 ```
