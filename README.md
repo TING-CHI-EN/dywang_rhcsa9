@@ -570,7 +570,7 @@ vim nfindw
 ```
 ```
 #!/bin/bash
-find /usr -size +250k -size -300k > /root/nfindw.txt
+find /usr -size +250k -size -300k > /root/nfindw
 ```
 ```
 chmod +x nfindw
@@ -586,7 +586,7 @@ find / -perm -2000
 find / -perm -1000
 ```
 ```
-chmod +x nfindw
+chmod +x nfindf1
 mv nfindf1 /usr/bin/
 ```
 # [檔案打包壓縮](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node148.html)
@@ -636,4 +636,17 @@ tar jxvf /root/tarfw.tar.bz2
 cd ..
 cd mytar.xz/
 tar Jxvf /root/tarfw.tar.xz 
+```
+# [2023.12.07]
+# [Images 下載建立](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node164.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node168.html)
+```
+以 deyu5 帳號在本地端建立以下 podmaan 容器 images。
+    下載 registry.csie.cyut.edu.tw 的 dywrsyslog。
+    使用遠端的 Podmanfile，不要做任何修改，建立名為 prsyslog 的 image。
+    查詢 images，確認 dywrsyslog 及 prsyslog 是否建立？
+```
+```
+podman pull registry.csie.cyut.edu.tw/dywrsyslog
+podman build --tag podimg --file Podmanfile
 ```
