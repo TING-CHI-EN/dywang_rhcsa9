@@ -17,6 +17,7 @@ cp res*.txt /tmp/11227608.rhcsa9m
 ```
 #### 下載評分程式參數檔
 ```
+cd /home/dywang/Downloads/
 wget https://dywang.csie.cyut.edu.tw/dywang/download/rhcsa9mpara11.sh
 ```
 # [IPv4 網路設定](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node33.html)
