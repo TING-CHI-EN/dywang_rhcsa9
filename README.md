@@ -660,3 +660,31 @@ RUN echo 'local4.*     /var/log/journal/podmanfile.log' >> /etc/rsyslog.conf
 podman pull registry.csie.cyut.edu.tw/dywrsyslog
 podman build --tag podimg --file Podmanfile
 ```
+# [2023.12.14]
+# [YUM 套件管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node184.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node189.html)
+```
+建立 yum 安裝套件倉庫來源
+    http://dywang.csie.cyut.edu.tw/alma9/BaseOS
+    http://dywang.csie.cyut.edu.tw/alma9/AppStream
+取消 RPM 檔案數位簽章檢查
+試著安裝套件 vsftpd
+```
+```
+scp kvm8:/etc/yum.repos.d/*.repo /etc/yum.repos.d/
+```
+# [邏輯卷冊放大縮小](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node190.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node195.html)
+```
+1. df -h 查詢目前掛載的檔案系統，其中名為 vo 的LV大小，將其寫到 /root/lvsize0，單位 M 不用寫。
+2. 比較 vosize 與查詢到的 vo 大小，是放大還是縮小？將結果寫到 /root/lvmod，放大寫入 "extend"，縮小寫入 "reduce"。
+3. 決定使用標準的放大縮小作法，或使用單一指令，完成 lv 的大小調整。將 vo 的大小調整為 vosize。
+4. df -h 再查詢掛載的檔案系統，觀察名為 vo 的LV大小是否已經調整為 vosize？將其大小寫到 /root/lvsize1，單位 M 不用寫，查到的大小與 vosize 差十幾 M 都是正確。
+```
+```
+echo '89' > /root/lvsize0
+echo 'reduce' > /root/lvmod
+lvresize -L 70M -r /dev/myvdb/vo 
+df -h
+echo '63' > /root/lvsize1
+```
