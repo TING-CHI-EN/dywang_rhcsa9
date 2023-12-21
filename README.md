@@ -692,3 +692,39 @@ lvresize -L 70M -r /dev/myvdb/vo
 df -h
 echo '63' > /root/lvsize1
 ```
+# [2023.12.21]
+# [邏輯卷冊管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node196.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node206.html)
+```
+找到kvm10 開機根目錄掛載的硬碟，將硬碟代號，例如 /dev/sda，寫到 /root/kvm10d。
+gdisk 在 kvm10 開機硬碟新增一分割區，大小包含硬碟未使用的全部空間，type 是 Linux LVM。
+pvcreate 初始化新分割的LVM空間。
+在新初始化的LVM實體空間，建立名為vg_mnt，PE大小為2M的VG。
+在新建立的vg_mnt，新增名為 pub，大小為12個PE的LV。
+在新建立的vg_mnt，新增名為 swap，大小為48M的LV。
+將名為pub LV 格式化為 vfat。
+將名為swap LV 格式化為 swap。
+建立目錄 /mnt/pub。
+設定開機自動掛載名為 pub 的 LV 於目錄 /mnt/pub。
+設定開機自動啟動名為 swap 的 LV 為 swap。
+```
+```
+echo '/dev/vda' > /root/kvm10d
+gdisk /dev/vda
+pvcreate /dev/vda4 
+vgcreate -s 2M qgroup2 /dev/vda4 
+lvcreate -l 39 -n qa2 qgroup2
+lvcreate -L 90M -n swap qgroup2 
+mkfs.ext3 /dev/qgroup2/qa2 
+mkswap /dev/qgroup2/swap 
+mkdir /mnt/qa2
+vim /etc/fstab 
+mount -a
+swapon -a
+swapon -s
+```
+```
+/etc/fstab
+/dev/mapper/qgroup2-qa2    /mnt/qa2               ext3    defaults        1 2
+/dev/mapper/qgroup2-swap none                     swap    defaults        0 0
+```
