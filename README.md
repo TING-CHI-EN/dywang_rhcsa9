@@ -664,6 +664,61 @@ RUN echo 'local4.*     /var/log/journal/podmanfile.log' >> /etc/rsyslog.conf
 podman pull registry.csie.cyut.edu.tw/dywrsyslog
 podman build --tag podimg --file Podmanfile
 ```
+# [開機啟用Podman容器](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node169.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node177.html)
+```
+使用 dywrsyslog image 新增設定容器
+    基本要求
+        名稱 mylog
+        設定只有 deyu5 帳號能以 systemd 服務啟動容器
+        容器啟動的服務名稱為 container-mylog
+        開機但未登入 deyu5 也要自動啟動 container-mylog 服務
+    容器掛載儲存空間
+        在 deyu5 的家目錄新增名為 cjournal 的次目錄
+        cjournal 必須掛載於 mylog 容器的 /var/log/journal
+    容器測試
+        在 mylog 容器執行 logger -p local3.info 'dywmylog test'
+        在 mylog 容器的 /var/log/journal 目錄中是否新增 csie.cyut.log，且檔案內容是 loger 寫入的 'dywmylog test'？
+        退出 mylog 容器，查看 deyu5 家目錄中的 cjournal 次目錄中是否一樣新增了 csie.cyut.log 檔案，內容也是 'dywmylog test'。
+使用上一章以 podmanfile 產生的image，localhost/prsyslog，新增設定容器。
+    基本要求
+        名稱 podlog
+        設定只有 deyu5 帳號能以 systemd 服務啟動容器
+        容器啟動的服務名稱為 container-podlog
+        開機但未登入 deyu5 也要自動啟動 container-podlog 服務
+    容器掛載儲存空間
+        在 deyu5 的家目錄新增名為 pjournal 的次目錄
+        pjournal 必須掛載於 podlog 容器的 /var/log/journal
+    容器測試
+        在 podlog 容器執行 logger -p local4.info 'podlog test'
+        在 podlog 容器的 /var/log/journal 目錄中是否新增 podmanfile.log，且檔案內容是 looger 寫入的 'podlog test'？
+        退出 podlog 容器，查看 deyu5 家目錄中的 pjournal 次目錄中是否一樣新增了 podmanfile.log 檔案，內容也是 'podlog test'。
+```
+```
+mkdir cjournal2a
+mkdir djournal12a
+
+podman create --name mmserver2 --privileged --volume /home/deyu5/cjournal1/:/var/log/journal/:Z dywrsyslog:latest
+podman create --name ppserver2 --privileged --volume /home/deyu5/djournal1/:/var/log/journal/:Z podimg2:latest
+
+mkdir -p .config/systemd/user/
+cd .config/systemd/user/
+
+podman generate systemd --name mmserver2 --files
+podman generate systemd --name ppserver2 --files
+systemctl --user daemon-reload
+
+systemctl --user enable --now container-mmserver2.service 
+systemctl --user enable --now container-ppserver2.service 
+
+podman exec -it mmserver2 /bin/bash
+logger -p local3.info 'nh qaz vssfr'
+exit
+
+podman exec -it ppserver2 /bin/bash
+logger -p local4.info 'iis sas qssa afr'
+exit
+```
 # [2023.12.14]
 # [YUM 套件管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node184.html)
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node189.html)
