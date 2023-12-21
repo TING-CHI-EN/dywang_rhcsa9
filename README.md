@@ -698,8 +698,8 @@ podman build --tag podimg --file Podmanfile
 mkdir cjournal2a
 mkdir djournal12a
 
-podman create --name mmserver2 --privileged --volume /home/deyu5/cjournal1/:/var/log/journal/:Z dywrsyslog:latest
-podman create --name ppserver2 --privileged --volume /home/deyu5/djournal1/:/var/log/journal/:Z podimg2:latest
+podman create --name mmserver2 --privileged --volume /home/deyu5/cjournal2a/:/var/log/journal/:Z dywrsyslog:latest
+podman create --name ppserver2 --privileged --volume /home/deyu5/djournal2a/:/var/log/journal/:Z podimg2:latest
 
 mkdir -p .config/systemd/user/
 cd .config/systemd/user/
