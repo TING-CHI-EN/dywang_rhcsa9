@@ -696,7 +696,7 @@ podman build --tag podimg --file Podmanfile
 ```
 ```
 mkdir cjournal2a
-mkdir djournal12a
+mkdir djournal2a
 
 podman create --name mmserver2 --privileged --volume /home/deyu5/cjournal2a/:/var/log/journal/:Z dywrsyslog:latest
 podman create --name ppserver2 --privileged --volume /home/deyu5/djournal2a/:/var/log/journal/:Z podimg2:latest
