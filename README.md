@@ -728,3 +728,23 @@ swapon -s
 /dev/mapper/qgroup2-qa2    /mnt/qa2               ext3    defaults        1 2
 /dev/mapper/qgroup2-swap none                     swap    defaults        0 0
 ```
+# [Tuned 性能調整](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node220.html)
+## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node225.html)
+```
+ll 查詢 /usr/lib/tuned 目錄下的配置文件，導向到 /root/tunedprofiles。
+查詢 tuned 服務是否設定開機啟動，導向到 /root/tuned-enabled。
+查詢 tuned 服務現在是否啟動，導向到 /root/tuned-active。
+查詢 tuned 服務目前啟用的 profile，並將查詢命令寫成腳本 /root/tuned.active.sh。
+查詢 tuned 服務建議的 profile，並將命令寫成腳本 /root/tuned.recommend.sh。
+將預設的 profile 設定成到系統建議的 profile。
+```
+```
+ll /usr/lib/tuned/ > /root/tunedprofiles
+systemctl is-enabled tuned.service > /root/tuned-enabled
+systemctl is-active tuned.service > /root/tuned-active
+echo 'tuned-adm active' > /root/tuned.active.sh
+chmod +x tuned.active.sh 
+echo 'tuned-adm recommend' > /root/tuned.recommend.sh
+chmod +x tuned.recommend.sh 
+tuned-adm profile virtual-guest
+```
