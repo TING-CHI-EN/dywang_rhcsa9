@@ -1,0 +1,62 @@
+ls /etc/audit/ > /root/redirect1
+ls /etcdy 2> /root/redirect2
+ls /usr/local/ > /root/redirect3
+ls /usr/etcdy 2>> /root/redirect3
+ls /bin/a* /lib64/autofs1 > /root/redirect4 2>&1
+cat /usr/share/doc/xz/README | grep info > /root/info
+cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause | grep and > /root/11227608_list
+nmcli connection show enp1s0 | grep -iE ipv?4 > /root/11227608_ip4
+
+useradd -G s11227608_g edison
+useradd -G s11227608_g patty
+useradd -s /sbin/nologin mono
+useradd -u 3563 ann
+echo 'hwsd4Ak' | passwd --stdin edison
+echo 'hwsd4Ak' | passwd --stdin patty
+echo 'hwsd4Ak' | passwd --stdin mono
+echo 'hwsd4Ak' | passwd --stdin ann
+
+useradd deyu11
+useradd deyu12
+chage -M 32 deyu12
+chage -m 4 deyu12
+chage -W 3 deyu12
+chage -l deyu11 | tee > /root/chage1
+chage -l deyu12 | tee > /root/chage2
+
+mkdir /home/s11227608_sd
+chgrp s11227608_g /home/s11227608_sd/
+chmod 2770 /home/s11227608_sd/
+
+setfacl -m u:edison:rw /var/tmp/auto.misc
+setfacl -m u:patty:- /var/tmp/auto.misc
+
+mkdir /root/mfinds
+find / -user deyu8 2> /dev/null | xargs cp -t /root/mfinds/
+find /usr/share -size +1M > /root/find1
+find /usr/share -size -5M > /root/find2
+find /usr/share -size +250k -size -300k > /root/find3
+find /etc/systemd/ -perm -664 > /root/find4
+find / -perm -4000 > /root/find5
+find / -perm -2000 > /root/find6
+find / -perm -1000 > /root/find7
+
+tar zcvf /root/tarfa.tgz /etc/pki/
+tar jcvf /root/tarfa.tar.bz2 /etc/pki/
+tar Jcvf /root/tarfa.tar.xz /etc/pki/
+
+tar ztvf /root/tarfa.tgz > /root/tarfa.tgz.t
+tar jtvf /root/tarfa.tar.bz2 > /root/tarfa.tar.bz2.t
+tar Jtvf /root/tarfa.tar.xz > /root/tarfa.tar.xz.t
+
+mkdir /root/mytar.gz
+mkdir /root/mytar.bz
+mkdir /root/mytar.xz
+cd mytar.gz/
+tar zxvf /root/tarfa.tgz
+cd ..
+cd mytar.bz
+tar jxvf /root/tarfa.tar.bz2
+cd ..
+cd mytar.xz/
+tar Jxvf /root/tarfa.tar.xz
