@@ -1,0 +1,141 @@
+1  hostnamectl hostname kvm8.deyu.wang
+    2  exit
+    3  echo 'enp1s0' > /root/netif
+    4  echo 'enp1s0' > /root/netcon
+    5  scp kvm10:/etc/yum.repos.d/*.repo /etc/yum.repos.d/
+    6  dnf install vsftpd
+    7  systemctl is-active chronyd.service > /root/systemd-active
+    8  systemctl is-enabled chronyd.service > /root/systemd-enable
+    9  echo 'systemctl stop chronyd.service' > /root/systemd-stop
+   10  echo 'systemctl start chronyd.service' > /root/systemd-start
+   11  echo 'systemctl restart chronyd.service' > /root/systemd-restart
+   12  echo 'systemctl status chronyd.service' > /root/systemd-status
+   13  semanage port --list | grep http
+   14  semanage port -a -t http_port_t -p tcp 82
+   15  semanage port --list | grep http
+   16  systemctl restart httpd.service
+   17  ll /var/www/html/
+   18  curl http://127.0.0.1:82/file1
+   19  restorecon -rv /var/www/html/
+   20  semanage fcontext -d -t admin_home_t /var/www/html/file1
+   21  restorecon -rv /var/www/html/
+   22  ls -Z /var/www/html/
+   23  curl http://127.0.0.1:82/file1
+   24  curl http://127.0.0.1:82/file2
+   25  vim test.sh
+   26  ll
+   27  bash test.sh 
+   28  ll
+   29  vim test.sh
+   30  bash test.sh 
+   31  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt | grep this > /root/11227608_list
+   32  vim test.sh
+   33  chmod +x test.sh 
+   34  groupadd s11227608_g
+   35  getent group s11227608_g 
+   36  vim test.sh 
+   37  ./test.sh 
+   38  visudo 
+   39  useradd elva
+   40  visudo 
+   41  groupadd 11227608_grp
+   42  useradd glenn -G 11227608_grp 
+   43  echo qweqwe | passwd --stdin glenn 
+   44  systemctl is-enabled chronyd.service > /root/systemd-enabled
+   45  ll
+   46  rm systemd-enable
+   47  ll
+   48  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt | grep this > /root/11227608_lsit
+   49  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt | grep this > /root/11227608_list
+   50  ll
+   51  rm 11227608_lsit 
+   52  ll
+   53  su - elva 
+   54  su - glenn 
+   55  su - elva 
+   56  su - glenn 
+   57  vim /etc/login.defs 
+   58  vim test.sh 
+   59  ./test.sh 
+   60  ll
+   61  su - deyu6 
+   62  vim test.sh 
+   63  ./test.sh 
+   64  su - edison 
+   65  su - patty 
+   66  su - ann 
+   67  cp /etc/auto.net /var/tmp/
+   68  cp /etc/auto.misc /var/tmp/
+   69  ll /var/tmp/
+   70  rm /var/tmp/auto.net 
+   71  ll /var/tmp/
+   72  ll /var/tmp/auto.misc 
+   73  vim test.sh 
+   74  ./test.sh 
+   75  crontab -u patty -e
+   76  vim /etc/chrony.conf 
+   77  systemctl restart chronyd.service 
+   78  systemctl is-active chronyd.service > /root/chronyd-active
+   79  systemctl is-enabled chronyd.service > /root/chronyd-enabled
+   80  chronyc sources | grep deyu > /root/chronyc-sources
+   81  ll
+   82  dnf install nfs-utils
+   83  dnf install autofs
+   84  vim /etc/auto.master
+   85  vim /etc/auto.dyw
+   86  systemctl enable autofs
+   87  systemctl restart autofs
+   88  showmount -e deyu.wang > /root/smount
+   89  getent passwd ldapuser3 > /root/ldapuser
+   90  systemctl is-enabled autofs.service > /root/autofs-enabled
+   91  systemctl is-active autofs.service > /root/autofs-active
+   92  vim test.sh 
+   93  ./test.sh 
+   94  ll
+   95  vim nfindwd
+   96  chmod +x nfindwd 
+   97  ll
+   98  mv nfindwd /usr/local/bin/
+   99  nfindwd 
+  100  vim nfinde1
+  101  chmod +x nfinde1 
+  102  mv nfinde1 /usr/bin/
+  103  ll
+  104  mv nfindwd /usr/local/bin/
+  105  ll
+  106  nfinde1 
+  107  ll /usr/local/bin/
+  108  chmod +x /usr/local/bin/nfindwd 
+  109  ll /usr/local/bin/nfindwd 
+  110  nfindwd 
+  111  rm /usr/local/bin/nfindwd 
+  112  ll
+  113  ll /usr/local/bin/
+  114  vim nfindwd
+  115  chmod +x nfindwd 
+  116  ll
+  117  mv nfindwd /usr/local/bin/
+  118  ll
+  119  nfindwd 
+  120  ll
+  121  dnf install bzip2 -y
+  122  vim test.sh 
+  123  ./test.sh 
+  124  ll
+  125  vim /etc/auto.dyw 
+  126  systemctl restart autofs
+  127  find /usr/share -size -5M > /root/find2
+  128  vim /usr/local/bin/nfindwd 
+  129  nfindwd 
+  130  ll
+  131  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause
+  132  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt 
+  133  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt | grep this
+  134  cat /usr/share/doc/systemd/LICENSES/BSD-3-Clause.txt | grep this > /root/11227608_list
+  135  history
+  136  vim test.sh 
+  137  vim /etc/auto.dyw 
+  138  vim /etc/auto.master
+  139  ssh deyu5@kvm8 | vim Podmanfile
+  140  ll
+  141  history
