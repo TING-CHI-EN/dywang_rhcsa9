@@ -695,28 +695,28 @@ podman build --tag podimg --file Podmanfile
         退出 podlog 容器，查看 deyu5 家目錄中的 pjournal 次目錄中是否一樣新增了 podmanfile.log 檔案，內容也是 'podlog test'。
 ```
 ```
-mkdir cjournal2a
-mkdir djournal2a
+mkdir cjournal2
+mkdir djournal2
 
-podman create --name mmserver2 --privileged --volume /home/deyu5/cjournal2a/:/var/log/journal/:Z dywrsyslog:latest
-podman create --name ppserver2 --privileged --volume /home/deyu5/djournal2a/:/var/log/journal/:Z podimg2:latest
+podman create --name myserver --privileged --volume /home/deyu5/cjournal2/:/var/log/journal/:Z dywrsyslog:latest
+podman create --name podserver --privileged --volume /home/deyu5/djournal2/:/var/log/journal/:Z podimga:latest
 
 mkdir -p .config/systemd/user/
 cd .config/systemd/user/
 
-podman generate systemd --name mmserver2 --files
-podman generate systemd --name ppserver2 --files
+podman generate systemd --name myserver --files
+podman generate systemd --name podserver --files
 systemctl --user daemon-reload
 
-systemctl --user enable --now container-mmserver2.service 
-systemctl --user enable --now container-ppserver2.service 
+systemctl --user enable --now container-myserver.service
+systemctl --user enable --now container-podserver.service
 
-podman exec -it mmserver2 /bin/bash
-logger -p local3.info 'nh qaz vssfr'
+podman exec -it myserver /bin/bash
+logger -p local3.info 'nhsy qaz vsfr'
 exit
 
-podman exec -it ppserver2 /bin/bash
-logger -p local4.info 'iis sas qssa afr'
+podman exec -it podserver /bin/bash
+logger -p local4.info 'iiiss sas qsa afr'
 exit
 ```
 # [2023.12.14]
