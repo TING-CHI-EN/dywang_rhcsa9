@@ -662,7 +662,7 @@ RUN echo 'local4.*     /var/log/journal/podmanfile.log' >> /etc/rsyslog.conf
 ```
 ```
 podman pull registry.csie.cyut.edu.tw/dywrsyslog
-podman build --tag podimg --file Podmanfile
+podman build --tag podimgv --file Podmanfile
 ```
 # [開機啟用Podman容器](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node169.html)
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node177.html)
@@ -695,28 +695,28 @@ podman build --tag podimg --file Podmanfile
         退出 podlog 容器，查看 deyu5 家目錄中的 pjournal 次目錄中是否一樣新增了 podmanfile.log 檔案，內容也是 'podlog test'。
 ```
 ```
-mkdir cjournal2
-mkdir djournal2
+mkdir cjournalv
+mkdir pjournalv
 
-podman create --name myserver --privileged --volume /home/deyu5/cjournal2/:/var/log/journal/:Z dywrsyslog:latest
-podman create --name podserver --privileged --volume /home/deyu5/djournal2/:/var/log/journal/:Z podimga:latest
+podman create --name myserverv --privileged --volume /home/deyu5/cjournalv/:/var/log/journal/:Z dywrsyslog:latest
+podman create --name podserverv --privileged --volume /home/deyu5/pjournalv/:/var/log/journal/:Z podimgv:latest
 
 mkdir -p .config/systemd/user/
 cd .config/systemd/user/
 
-podman generate systemd --name myserver --files
-podman generate systemd --name podserver --files
+podman generate systemd --name myserverv --files
+podman generate systemd --name podserverv --files
 systemctl --user daemon-reload
 
-systemctl --user enable --now container-myserver.service
-systemctl --user enable --now container-podserver.service
+systemctl --user enable --now container-myserverv.service
+systemctl --user enable --now container-podserverv.service
 
-podman exec -it myserver /bin/bash
-logger -p local3.info 'nhsy qaz vsfr'
+podman exec -it myserverv /bin/bash
+logger -p local3.info 'nhsy qaz vvfr'
 exit
 
 podman exec -it podserver /bin/bash
-logger -p local4.info 'iiiss sas qsa afr'
+logger -p local4.info 'iiiss sas qva afr'
 exit
 ```
 # [2023.12.14]
@@ -743,9 +743,9 @@ scp kvm8:/etc/yum.repos.d/*.repo /etc/yum.repos.d/
 ```
 echo '89' > /root/lvsize0
 echo 'reduce' > /root/lvmod
-lvresize -L 70M -r /dev/myvdb/vo 
+lvresize -L 68M -r /dev/myvdb/vo 
 df -h
-echo '63' > /root/lvsize1
+echo '59' > /root/lvsize1
 ```
 # [2023.12.21]
 # [邏輯卷冊管理](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node196.html)
@@ -767,21 +767,21 @@ pvcreate 初始化新分割的LVM空間。
 echo '/dev/vda' > /root/kvm10d
 gdisk /dev/vda
 pvcreate /dev/vda4 
-vgcreate -s 2M qgroup2 /dev/vda4 
-lvcreate -l 39 -n qa2 qgroup2
-lvcreate -L 90M -n swap qgroup2 
-mkfs.ext3 /dev/qgroup2/qa2 
-mkswap /dev/qgroup2/swap 
-mkdir /mnt/qa2
-vim /etc/fstab 
+vgcreate -s 16M qvgroup /dev/vda4
+lvcreate -l 12 -n qv qvgroup
+lvcreate -L 140M -n swap qvgroup
+mkfs.xfs /dev/qvgroup/qv
+mkswap /dev/qvgroup/swap
+mkdir /mnt/qv
+vim /etc/fstab
 mount -a
 swapon -a
 swapon -s
 ```
 ```
 /etc/fstab
-/dev/mapper/qgroup2-qa2    /mnt/qa2               ext3    defaults        1 2
-/dev/mapper/qgroup2-swap none                     swap    defaults        0 0
+/dev/mapper/qvgroup-qv    /mnt/qv                 xfs     defaults        1 2
+/dev/mapper/qvgroup-swap none                     swap    defaults        0 0
 ```
 # [Tuned 性能調整](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node220.html)
 ## [實機練習](https://dywang.csie.cyut.edu.tw/dywang/rhcsa9/node225.html)
